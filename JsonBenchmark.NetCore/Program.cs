@@ -8,6 +8,8 @@ namespace JsonBenchmark
         {
             BenchmarkRunner.Run<JsonDeserializersBenchmarks>();
             BenchmarkRunner.Run<JsonSerializersBenchmarks>();
+            BenchmarkRunner.Run<BigJsonDeserializersBenchmarks>();
+            BenchmarkRunner.Run<BigJsonSerializersBenchmarks>();
         }
     }
 }

@@ -4,14 +4,15 @@ using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Attributes.Columns;
 using BenchmarkDotNet.Attributes.Exporters;
 using BenchmarkDotNet.Attributes.Jobs;
+using Jil;
 using JsonBenchmark.TestDTOs;
 using Newtonsoft.Json;
 
 
 namespace JsonBenchmark
 {
-    [ClrJob, CoreJob]
-    [RPlotExporter, RankColumn]
+    [ClrJob(true), CoreJob]
+    [RPlotExporter, RankColumn, MemoryDiagnoser]
     [HtmlExporter]
     public class JsonSerializersBenchmarks : JsonBenchmarkBase
     {
@@ -26,6 +27,12 @@ namespace JsonBenchmark
         public string NewtonsoftJson_SerializeMemory()
         {
             return JsonConvert.SerializeObject(data);
+        }
+
+        [Benchmark]
+        public string Jil_SerializeMemory()
+        {
+            return JSON.Serialize(data);
         }
     }
 }
